@@ -1,7 +1,7 @@
 CURRENT=$(date +"%Y")
-OFFSET=1
+OFFSET=10
 Y=$(($CURRENT - $OFFSET))
-END_Y=$(($CURRENT))
+END_Y=$(($CURRENT + $OFFSET))
 
 mkdir commits
 cd commits
@@ -10,7 +10,7 @@ while ((Y<=END_Y))
 do
   mkdir $Y
   cd $Y
-  for M in {10..12}
+  for M in {01..12}
   do
     mkdir $M
     cd $M
@@ -18,7 +18,7 @@ do
     do  
       mkdir $D
       cd $D
-      for $(seq 1 $((1 + RANDOM % 10)))
+      for i in {01..12}
       do
         echo "$i on $M/$D/$Y" > commit.md
         export GIT_COMMITTER_DATE="$Y-$M-$D 12:$i:00"
